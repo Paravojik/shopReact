@@ -17,12 +17,11 @@ const List=({addToCart})=>{
             
             return(
                 <div className='List_main__obj' key={product.id}>
-                {product.name} 
-                {product.price}$
+                {product.name}  {product.price}$
                 <img className='List_main__obj__img' src={product.url} alt="" />
           
           
-                <button onClick={()=>addToCart(product)}>Add to cart</button>
+                <button className='List_main__obj__btn' onClick={()=>addToCart(product)}>Add to cart</button>
             </div>
             )
   

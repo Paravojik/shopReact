@@ -1,5 +1,5 @@
 .List{
-    width: 80%;
+    width: 70%;
     min-height: 90vh;
     display: flex;
     flex-direction: column;
@@ -25,9 +25,18 @@ align-items: center;
 border: 1px solid black;
 padding: 10px;
 text-align: center;
+border-radius: 5px;
 }
 .List_main__obj__img{
     width: 200px;
     background-color: white;
-    mix-blend-mode: multiply;
+    mix-blend-mode: darken;
+}
+.List_main__obj__btn{
+    border: none;
+    background-color: rgb(0, 201, 0);
+    color: white;
+    border-radius: 5px;
+    padding: 3px;
+    cursor: pointer;
 }

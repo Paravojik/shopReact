@@ -21,6 +21,22 @@ const Cart =()=>{
 
      
     }
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     fetch('/api/users', {
+    //       method: 'POST',
+    //       headers: { 'Content-Type': 'application/json' },
+    //       body: JSON.stringify(document.getElementById('form__inp').value)
+    //     })
+    //       .then(response => response.json())
+    //       .then(data => console.log(data))
+    //       .catch(error => console.error(error));
+    //   };
+    // const sendTelegram= ()=>{
+    //     let form__inp=document.getElementById('form__inp')
+    //     alert(form__inp.value)
+    //     // const query = await Axios.post("/sendTelegram", form__inp)
+    // }
     const removeFromCart=(product,indexOfGood)=>{
    let newItems=items.filter(item=>item.id!==product.id)
    setItem(newItems)
@@ -45,8 +61,8 @@ const Cart =()=>{
                   
                         return(
                             <li key={item.id}>
-                            {item.name} - {item.price}
-                            <button onClick={()=>removeFromCart(item)}>Remove</button>
+                            {item.name } - { item.price}
+                            <button className='CartRight__btnRemove' onClick={()=>removeFromCart(item)}>Remove</button>
                         </li>
                         )
                
@@ -60,6 +76,10 @@ const Cart =()=>{
                 </ul>
                  )
             }
+                  {/* <form onSubmit={()=>handleSubmit()} action="../../post" method="POST" id='form__cart'  className="form">
+                <input className='form__inp' id='form__inp' name='form__inp' type="text" />         
+                 <button className='form__submit' id='form__submit' type="submit" onClick={()=>sendTelegram()}>Connected?</button>
+        </form> */}
              </div>
             
      
