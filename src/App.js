@@ -1,7 +1,7 @@
 
 import './App.css';
 import Cart from './Components/Cart/Cart';
-import Header from './Header/Header.jsx'
+import Header from './Components/Header/Header.jsx'
 
 function App() {
   return (
