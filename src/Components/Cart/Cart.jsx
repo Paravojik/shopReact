@@ -1,10 +1,12 @@
 import './Cart.css'
-import {useState} from "react"
+import {useState,useMemo} from "react"
 import List from '../List/List.jsx'
+import close from '../../img/close.png'
 const Cart =()=>{
     let [items,setItem]=useState(JSON.parse(localStorage.getItem('items__LS')) || [])
     // const [price,setPrice]=useState([])
     let [indexOfGood,setIndexOfGood]=useState(Number(localStorage.getItem('indexOfGood__LS') || 1))
+    const filterText=''
     // let indexOfGood=0
     let productSend
     const addToCart=(product)=>{
@@ -43,6 +45,11 @@ const Cart =()=>{
 //    localStorage.setItem('items__LS',JSON.stringify(items))
 
     }
+    console.log(filterText)
+    const filteredItems=useMemo(()=>{
+        return items.filter(item=>item.name.toLowerCase().includes(filterText.toLowerCase()))
+    },[items,filterText]
+    )
     let TotalPrice=items.reduce(
         (accumulator, currentValue) => accumulator + currentValue.price,0);
         localStorage.setItem('items__LS',JSON.stringify(items))
@@ -53,16 +60,26 @@ const Cart =()=>{
         <div className='Cart'>
              <List addToCart={addToCart}/>
              <div className="CartRight">
+             {/* <input type="text" value={filterText} onChange={e=>setFilterText(e.target.value)}/> */}
              <h2>Cart</h2>
             {items.length===0 ? (<>Your cart is empty</>):
-                 (   <ul>
+                 (   <div className='Cart__items'>
                 
-                    {items.map((item)=>{
+                    {filteredItems.map((item)=>{
                   
                         return(
                             <li key={item.id}>
-                            {item.name } - { item.price}
-                            <button className='CartRight__btnRemove' onClick={()=>removeFromCart(item)}>Remove</button>
+                                <div className="Cart__items__item">
+                                    <img className='Cart__items__item__img' src={item.url} alt="" />
+                                    <div className="Cart__items__item__center">
+                                    <div className="Cart__items__item__text">{item.name}</div>
+                                    <div className="Cart__items__item__text2">{item.price}$</div>
+                                    </div>
+                         
+                            <img className='remove' src={close} onClick={()=>removeFromCart(item)} alt="" />
+                            {/* <button className='CartRight__btnRemove' onClick={()=>removeFromCart(item)}></button> */}
+                                </div>
+                            
                         </li>
                         )
                
@@ -72,8 +89,8 @@ const Cart =()=>{
                         
                          
                     ) }
-                          {`Total Price:`+ TotalPrice}
-                </ul>
+                          {`Total Price: `+ TotalPrice+'$'}
+                </div>
                  )
             }
                   {/* <form onSubmit={()=>handleSubmit()} action="../../post" method="POST" id='form__cart'  className="form">

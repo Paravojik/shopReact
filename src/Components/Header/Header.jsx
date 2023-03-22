@@ -4,7 +4,7 @@ import {useState} from "react"
 import 'jquery'
 import $ from 'jquery'
 const Header=()=>{
-    let [Header,setHeader]=useState(true)
+    let [Header,setHeader]=useState(false)
     const HeaderClick=()=>{
         if(Header===true){
             setHeader(false)
@@ -22,6 +22,7 @@ const Header=()=>{
         let widt=window.globalThis.innerWidth
         console.log(widt)
         if(widt>=1200){
+            setHeader(false)
             $('.CartRight').css('display','flex')
         }
     },1000)
